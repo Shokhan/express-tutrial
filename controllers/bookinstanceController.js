@@ -16,13 +16,13 @@ exports.bookinstance_detail = function(req, res) {
     BookInstance.findById(req.params.id)
     .populate('book')
     .exec(function (err, bookinstance) {
-      if (err) { return next(err); }
-      if (bookinstance==null) { // No results.
-          var err = new Error('Book copy not found');
-          err.status = 404;
-          return next(err);
+        if (err) { return next(err); }
+        if (bookinstance==null) { // No results.
+            var err = new Error('Book copy not found');
+            err.status = 404;
+            return next(err);
         }
-      // Successful, so render.
+        // Successful, so render.
       res.render('bookinstance_detail', { title: 'Book:', bookinstance:  bookinstance});
     })
 };

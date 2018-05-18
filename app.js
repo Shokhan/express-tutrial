@@ -42,7 +42,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-mongoose.connect("mongodb://ShokhanulKhok:musarok1234@ds217560.mlab.com:17560/local_library");
+var mongoDB = process.env.MONGODB_URI || "mongodb://ShokhanulKhok:musarok1234@ds217560.mlab.com:17560/local_library";
+mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB conn err"));
